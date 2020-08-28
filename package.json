@@ -1,36 +1,75 @@
 {
-  "name": "desktop_text_sync",
+  "name": "electron-cra",
   "version": "0.1.0",
+  "author": "bigheadZ",
+  "description": "electron boilerplate with create react app",
   "private": true,
+  "main": "main/main.js",
+  "homepage": "./",
   "dependencies": {
-    "cra-template": "1.0.3",
+    "electron-log": "^4.2.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-dom": "^16.13.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start-electron": "chcp 65001 && cross-env NODE_ENV=development electron .",
+    "start-render": "chcp 65001 && cross-env BROWSER=none react-app-rewired start",
+    "build-render": "react-app-rewired build",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "build-dist": "react-app-rewired build & electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "Chrome 80"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "Chrome 80" 
     ]
   },
   "devDependencies": {
-    "electron": "^10.0.0",
-    "electron-builder": "^22.8.0"
+    "@types/node": "^14.6.1",
+    "@types/react": "^16.9.48",
+    "cra-template": "1.0.3",
+    "cross-env": "^7.0.2",
+    "customize-cra": "^1.0.0",
+    "electron": "^10.1.0",
+    "electron-builder": "^22.8.0",
+    "react-app-rewire-multiple-entry": "^2.2.0",
+    "react-app-rewired": "^2.1.6",
+    "react-scripts": "3.4.3",
+    "typescript": "^4.0.2"
+  },
+  "build": {
+    "appId": "your.app.id",
+    "productName": "electron-cra",
+    "asar": true,
+    "asarUnpack": [],
+    "extraResources": [],
+    "extends": null,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "./build/**/*",
+      "./main/**/*",
+      "./package.json"
+    ],
+    "win": {
+      "icon": "./main/icon.ico"
+    },
+    "npmRebuild": false,
+    "electronDownload": {
+      "mirror": "https://npm.taobao.org/mirrors/electron/"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "include": "./nsis-scripts/installer.nsh"
+    }
   }
 }
