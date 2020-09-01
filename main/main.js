@@ -32,7 +32,8 @@ const showAndFocusWindow = () => {
 };
 
 const initTray = () => {
-  tray = new Tray(path.join(__dirname, "/icon.ico"));
+  tray = new Tray(path.join(__dirname, "/icon.png"))
+  // tray = new Tray(appIcon);
   const trayContextMenu = Menu.buildFromTemplate(
     [
       {

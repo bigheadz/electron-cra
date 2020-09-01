@@ -12,8 +12,8 @@
     "react-dom": "^16.13.1"
   },
   "scripts": {
-    "start-electron": "chcp 65001 && cross-env NODE_ENV=development electron .",
-    "start-render": "chcp 65001 && cross-env BROWSER=none react-app-rewired start",
+    "start-electron": "cross-env NODE_ENV=development electron .",
+    "start-render": "cross-env BROWSER=none react-app-rewired start",
     "build-render": "react-app-rewired build",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
