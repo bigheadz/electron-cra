@@ -33,8 +33,7 @@ const showAndFocusWindow = () => {
 
 const initTray = () => {
   tray = new Tray(path.join(__dirname, "/icon.png"))
-  // tray = new Tray(appIcon);
-  const trayContextMenu = Menu.buildFromTemplate(
+  const contextMenu = Menu.buildFromTemplate(
     [
       {
         label: "open",
@@ -61,12 +60,13 @@ const initTray = () => {
     ].filter((o) => o !== false)
   );
   tray.setToolTip("electron with cra");
+  tray.setContextMenu(contextMenu);
 
   tray.on("click", () => {
     showAndFocusWindow();
   });
   tray.on("right-click", () => {
-    tray.popUpContextMenu(trayContextMenu);
+    tray.popUpContextMenu(contextMenu);
   });
 };
 
