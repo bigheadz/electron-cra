@@ -22,7 +22,7 @@ function sendUdp() {
     bytes
   ) {
     if (err) console.error("sendError", err);
-    console.log("received", bytes && bytes.length);
+    // console.log("received", bytes && bytes.length);
     socket.close();
   });
 }

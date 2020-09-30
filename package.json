@@ -15,7 +15,7 @@
     "react-dom": "^16.13.1"
   },
   "scripts": {
-    "update-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,grpc_js:. --grpc_out=./ main/text.proto",
+    "update-proto": "grpc_tools_node_protoc --proto_path=protos --js_out=import_style=commonjs,grpc_js:main --grpc_out=generate_package_definition: main/grpc_js text.proto",
     "start-electron": "webpack --config webpack.main.config.js --mode development && cross-env NODE_ENV=development electron .",
     "start-render": "cross-env BROWSER=none react-app-rewired start",
     "build-render": "react-app-rewired build",
