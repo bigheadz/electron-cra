@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+//生成多文件
+option java_multiple_files = true;
+//包名
+option java_package = "net.wemaking.voice2desktop";
+
+
+//定义TextSyncRequest消息类型，用于客户端消息
+message TextSyncRequest{
+ 	string id = 1;
+	string text = 2;
+	string action = 3;
+}
+
+//定义TextSyncResponse消息类型，用于服务端消息返回
+message TextSyncResponse{
+	string id = 1;
+	string text = 2;
+	string action = 3;
+}
+
+// 定义服务
+service SyncText {
+	// 服务中的方法，传过来一个TextSyncRequest类型的对象，返回一个TextSyncResponse类型的对象
+	rpc SyncText(stream TextSyncRequest) returns (stream TextSyncResponse) {}
+}

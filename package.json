@@ -4,15 +4,19 @@
   "author": "bigheadZ",
   "description": "electron boilerplate with create react app",
   "private": true,
-  "main": "main/main.js",
+  "main": "main/index.bundle.js",
   "homepage": "./",
   "dependencies": {
+    "@grpc/grpc-js": "^1.1.7",
+    "@grpc/proto-loader": "^0.5.5",
     "electron-log": "^4.2.4",
+    "google-protobuf": "^3.13.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "scripts": {
-    "start-electron": "cross-env NODE_ENV=development electron .",
+    "update-proto": "grpc_tools_node_protoc --js_out=import_style=commonjs,grpc_js:. --grpc_out=./ main/text.proto",
+    "start-electron": "webpack --config webpack.main.config.js --mode development && cross-env NODE_ENV=development electron .",
     "start-render": "cross-env BROWSER=none react-app-rewired start",
     "build-render": "react-app-rewired build",
     "pack": "electron-builder --dir",
@@ -27,7 +31,7 @@
       "Chrome 80"
     ],
     "development": [
-      "Chrome 80" 
+      "Chrome 80"
     ]
   },
   "devDependencies": {
@@ -41,10 +45,11 @@
     "react-app-rewire-multiple-entry": "^2.2.0",
     "react-app-rewired": "^2.1.6",
     "react-scripts": "3.4.3",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "webpack-cli": "^3.3.12"
   },
   "build": {
-    "appId": "your.app.id",
+    "appId": "net.wemaking.syncText",
     "productName": "electron-cra",
     "asar": true,
     "asarUnpack": [],
