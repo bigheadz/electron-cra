@@ -18,14 +18,15 @@ function createMainWindow() {
     webPreferences: { nodeIntegration: true },
     alwaysOnTop: true,
     transparent: true,
-    backgroundColor: "#AAFFFFFF",
+    // backgroundColor: "#AAFFFFFF",
   });
 
   if (isDevelopment) {
-    // window.webContents.openDevTools();
+    window.webContents.openDevTools();
   }
 
   if (isDevelopment) {
+    // console.log("ELECTRON_WEBPACK_WDS_PORT", process.env.ELECTRON_WEBPACK_WDS_PORT);
     window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
   } else {
     window.loadURL(

@@ -8,7 +8,7 @@ const multipleEntry = require("react-app-rewire-multiple-entry")(
       entry: "src/index.js",
       // template: "public/index.html",
       outPath: "/index.html",
-    }
+    },
   ].filter((i) => i !== false)
 );
 
@@ -41,14 +41,16 @@ const customizeImageLoader = () => (config) => {
 module.exports = override(
   addWebpackTarget("electron-renderer"),
   multipleEntry.addMultiEntry,
-  // fixBabelImports("import", {
-  //   libraryName: "antd",
-  //   libraryDirectory: "es",
-  //   style: true,
-  // }),
-  // addLessLoader({
-  //   javascriptEnabled: true,
-  //   modifyVars: { "@primary-color": "#529EFE" },
-  // }),
+  fixBabelImports("import", {
+    libraryName: "antd",
+    libraryDirectory: "es",
+    style: true,
+  }),
+  addLessLoader({
+    lessOptions: {
+      javascriptEnabled: true,
+      modifyVars: { "@primary-color": "#529EFE" },
+    },
+  }),
   customizeImageLoader()
 );
