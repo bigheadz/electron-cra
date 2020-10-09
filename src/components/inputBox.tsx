@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ipcRenderer } from "electron";
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import "./inputBox.less";
 // import { HomeOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
@@ -28,7 +28,7 @@ export default () => {
     };
   }, []);
   return (
-    <div className="textArea">
+    <div className="textAreaRoot">
       <TextArea
         onChange={handleChange}
         value={text}

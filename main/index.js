@@ -38,6 +38,8 @@ function createMainWindow() {
     );
   }
 
+  window.setIgnoreMouseEvents(false);
+
   window.on("closed", () => {
     mainWindow = null;
   });
