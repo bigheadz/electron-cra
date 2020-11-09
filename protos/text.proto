@@ -1,11 +1,5 @@
 syntax = "proto3";
 
-//生成多文件
-option java_multiple_files = true;
-//包名
-option java_package = "net.wemaking.voice2desktop";
-
-
 //定义TextSyncRequest消息类型，用于客户端消息
 message TextSyncRequest{
  	string id = 1;

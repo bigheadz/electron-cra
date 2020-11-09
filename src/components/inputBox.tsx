@@ -1,22 +1,27 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ipcRenderer } from "electron";
-import { Button, Input } from "antd";
+import { Input } from "antd";
+import { useMeasure } from "react-use";
 import "./inputBox.less";
+
+const { remote } = require("electron");
 // import { HomeOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 
 export default () => {
-  const [text, setText] = useState("initial value?");
+  const [ref, { width, height }] = useMeasure();
+  const [text, setText] = useState("");
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setText(e.target.value);
     },
     []
   );
-  // const handleSend = useCallback(() => {
-  //   console.log("send text:", text);
-  //   setText("");
-  // }, [text]);
+  useEffect(() => {
+    console.log("width, height", width, height);
+    remote.getCurrentWindow().setSize(width + 5 * 2, height + 5 * 2);
+  }, [width, height]);
+
   useEffect(() => {
     const listener = (_: any, data: any) => {
       console.log("data", data.text, data.action);
@@ -28,16 +33,8 @@ export default () => {
     };
   }, []);
   return (
-    <div className="textAreaRoot">
-      <TextArea
-        onChange={handleChange}
-        value={text}
-        rows={2}
-        autoSize
-        bordered={false}
-        allowClear
-        // onPressEnter={handleSend}
-      />
+    <div ref={ref} className="textAreaRoot">
+      {text}
     </div>
   );
 };

@@ -13,12 +13,13 @@ let mainWindow;
 function createMainWindow() {
   const window = new BrowserWindow({
     frame: false,
-    width: 300,
-    height: 88,
-    webPreferences: { nodeIntegration: true },
+    width: 600,
+    height: 182,
+    webPreferences: { nodeIntegration: true, enableRemoteModule: true },
     alwaysOnTop: true,
     transparent: true,
     // backgroundColor: "#AAFFFFFF",
+    skipTaskbar: true,
   });
 
   if (isDevelopment) {

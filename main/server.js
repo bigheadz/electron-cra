@@ -22,14 +22,18 @@ export function startService() {
 }
 
 function SyncText(call) {
+  
+  console.log("syncText start");
+
   call.on("data", ({ id, text, action }) => {
+    console.log("SyncText.data", { id, text, action });
     getWindow().webContents.send("sync", { text, action });
     if (action === "send") {
       clipboard.writeText(text);
     }
   });
 
-  call.on("end", () => {
+  call.on("SyncText.end", () => {
     console.log("end");
   });
 }
